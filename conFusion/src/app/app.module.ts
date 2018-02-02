@@ -11,15 +11,17 @@ import 'hammerjs';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenudetailsComponent } from './menudetails/menudetails.component';
-
-import { DishService } from './services/dish.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
+import { TestComponent } from './test/test.component';
 
-
+import { DishService } from './services/dish.service';
+import { PromotionService } from './services/promotion.service';
+import { LeaderService } from './services/leader.service';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { ContactComponent } from './contact/contact.component';
     FooterComponent,
     AboutComponent,
     HomeComponent,
-    ContactComponent
+    ContactComponent,
+    TestComponent,
+    LoginComponent
     
     
   ],
@@ -44,7 +48,8 @@ import { ContactComponent } from './contact/contact.component';
     FlexLayoutModule,
     AppRoutingModule
   ],
-  providers: [ DishService ],
+  providers: [ DishService,PromotionService,LeaderService ],
+  entryComponents: [LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
