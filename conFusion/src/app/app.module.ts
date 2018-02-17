@@ -6,6 +6,7 @@ import { HttpModule} from '@angular/http';
 import { MaterialModule } from '@angular/material'; 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -17,11 +18,19 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { TestComponent } from './test/test.component';
+import { LoginComponent } from './login/login.component';
 
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
-import { LoginComponent } from './login/login.component';
+import { ProcessHttpmsgService } from './services/process-httpmsg.service';
+import { FeedbackService } from './services/feedback.service';
+
+import { baseURL } from './shared/baseurl';
+import { RestangularModule, Restangular } from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restConfig';
+import { HighlightDirective } from './directives/highlight.directive';
+
 
 
 @NgModule({
@@ -35,7 +44,8 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     ContactComponent,
     TestComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective
     
     
   ],
@@ -46,9 +56,12 @@ import { LoginComponent } from './login/login.component';
     HttpModule,
     MaterialModule,
     FlexLayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
-  providers: [ DishService,PromotionService,LeaderService ],
+  providers: [ DishService,PromotionService,LeaderService,ProcessHttpmsgService,FeedbackService,
+    {provide: 'BaseURL', useValue: baseURL} ],
   entryComponents: [LoginComponent],
   bootstrap: [AppComponent]
 })
